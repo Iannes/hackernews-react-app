@@ -137,6 +137,19 @@ header {
   margin-top: 5px;
 }
 
+.loader:empty {
+  position: absolute;
+  top: calc(50% - 4em);
+  left: calc(50% - 4em);
+  width: 6em;
+  height: 6em;
+  border: 1.1em solid rgba(0, 0, 0, 0.2);
+  border-left: 1.1em solid #000000;
+  border-radius: 50%;
+  animation: spinner 1.1s infinite linear;
+  z-index:999999;
+}
+
 @keyframes spinner {
   0% {
     transform: rotate(0deg);
@@ -144,25 +157,4 @@ header {
   100% {
     transform: rotate(360deg);
   }
-}
-
-.loader {
-  display: flex;
-  justify-content: center;
-  align-content: center;
-  position: relative;
-  height: 100vh;
-}
-
-.loader:empty {
-  position: absolute;
-  top: calc(50%);
-  left: calc(50%);
-  width: 6em;
-  height: 6em;
-  border: 1.1em solid rgba(0, 0, 0, 0.2);
-  border-left: 1.1em solid #000000;
-  border-radius: 50%;
-  animation: spinner 1.1s infinite linear;
-  
 }
