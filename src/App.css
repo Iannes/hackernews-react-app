@@ -27,10 +27,6 @@ img {
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-}
 
 header {  
   background: #FC6621;  
@@ -50,23 +46,6 @@ header {
   z-index: 10;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.bold {
-  font-weight: bold;
-}
-
 
 .container {
   width: 92%;
@@ -82,7 +61,7 @@ header {
   padding: 0; }
 
 .posts {  
-  margin: 1em auto 3em;  
+  margin: 1em auto 0;  
   list-style: none;
   padding: 10px;
   margin-top: 50px;
