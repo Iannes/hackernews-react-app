@@ -13,6 +13,8 @@ body, h1, h2, h3, h4, h5, h6, p, ol, ul {
   margin: 0;
   padding: 0;
   font-weight: normal;
+  width: 100%;
+
 }
 
 ol, ul {
@@ -90,6 +92,7 @@ header {
   margin: 1em auto 3em;  
   list-style: none;
   padding: 10px;
+  margin-top: 50px;
 }
 
 .posts li {
