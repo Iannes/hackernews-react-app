@@ -35,10 +35,6 @@ img {
   height: 40vmin;
 }
 
-section {
-  width: 100%;
-}
-
 header {  
   background: #FC6621;  
   display: flex;
