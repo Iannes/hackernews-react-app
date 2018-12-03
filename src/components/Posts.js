@@ -2,10 +2,12 @@ import React from 'react';
 import Item from './Item';
 
 class Posts extends React.Component {
+
     constructor() {
       super();
+      
       this.state = { 
-          limit: 30,
+          limit: 10,
           posts: [] 
         };
 
@@ -13,7 +15,7 @@ class Posts extends React.Component {
       this.onLoadMore = this.onLoadMore.bind(this)
     }
     
-    componentWillMount() {
+    componentDidMount() {
         this.fetchLatestNews();
     }
     
@@ -38,7 +40,7 @@ class Posts extends React.Component {
      onLoadMore(e) {
          e.preventDefault();
         this.setState({
-            limit: this.state.limit + 30
+            limit: this.state.limit + 10
         });
     }
     
