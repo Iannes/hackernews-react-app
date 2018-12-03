@@ -1,5 +1,6 @@
 import React from 'react';
 import Item from './Item';
+import Loader from './Loader';
 
 class Posts extends React.Component {
 
@@ -7,6 +8,7 @@ class Posts extends React.Component {
       super();
       
       this.state = { 
+          loading: true,
           limit: 10,
           posts: [] 
         };
@@ -28,9 +30,12 @@ class Posts extends React.Component {
                 .then(response => response.json())
                 .then( itemDetail => {
               
-                this.setState((currentState) => {
+                this.setState((currentState) => {                    
                     currentState.posts.push(itemDetail);
-                    return { posts: currentState.posts };
+                    return { 
+                        posts: currentState.posts,
+                        loading: false
+                    };
                 })
              })
           });
@@ -46,16 +51,21 @@ class Posts extends React.Component {
     
     render() {
 
-        const { posts } = this.state
-        return <section>
+        const { loading, posts } = this.state
+        
+        if(loading) {
+            return <Loader />
+        } else {
+
+        return (<section>
             <ul className="posts">
-                {posts.slice(0,this.state.limit).map(function (post, i) {  
-                              
+                {posts.slice(0,this.state.limit).map(function (post, i) {            
                     return post !== null  && <Item key={post.id} post={post}/>
                 })}
             </ul>
             <button className="load-more" onClick={this.onLoadMore}>Load More</button>
-        </section>
+        </section>)
+        }
     }
   }
 
