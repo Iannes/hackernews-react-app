@@ -74,8 +74,9 @@ header {
   padding: 0; }
 
 .posts {  
-  margin: 1em 0 3em 0;  
+  margin: 1em auto 3em;  
   list-style: none;
+  padding: 10px;
 }
 
 .posts li {
