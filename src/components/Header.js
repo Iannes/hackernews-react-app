@@ -29,8 +29,8 @@ class Header extends React.Component {
         <header>
             <div className="container container-header">
                 <h1> Hacker News </h1>
-                <button>
-                    <img onClick={this.handleShare} className="share-button" src={share} width='92' alt="share button"/>
+                <button className="share-button">
+                    <img onClick={this.handleShare}  src={share} width='92' alt="share button"/>
                 </button>
             </div>
         </header>
