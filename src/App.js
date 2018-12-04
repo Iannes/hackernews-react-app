@@ -3,10 +3,12 @@ import './App.css';
 import Header  from "./components/Header";
 import Posts  from "./components/Posts";
 
+
 class App extends Component {
+
   render() {
     return (
-      <main className="App">
+      <main className="App">          
           <Header />
           <Posts />
       </main>

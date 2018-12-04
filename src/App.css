@@ -48,9 +48,31 @@ header {
 
 
 .container {
-  width: 92%;
+  width: 100%;
   max-width: 720px;
-  margin: 0 auto; }
+  margin: 0 auto; 
+}
+
+.share-button {
+  display: none;
+}
+
+@media(max-width: 500px) {
+
+  .container-header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    max-width: 75%;
+    margin: auto;
+  }
+  
+  .share-button {  
+    display: flex; 
+    height: 32px;
+    width: 32px;
+  }
+}
 
 
 .upvote {
