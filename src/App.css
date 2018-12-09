@@ -29,15 +29,9 @@ img {
 
 
 header {  
-  background: #FC6621;  
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  background: #FC6621;
   color: #eeeeee;
   line-height: 50px;
-  min-width: 100vw;
-  overflow: hidden;
   position: fixed;
   top: 0;
   opacity: 1;
@@ -53,6 +47,10 @@ header {
   margin: 0 auto; 
 }
 
+.container-header h1 {
+  flex: 1;
+}
+
 button.share-button {
   border: 0;
   background: transparent;
@@ -63,7 +61,7 @@ button.share-button {
 
   .container-header {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
     max-width: 75%;
     margin: auto;
@@ -161,17 +159,33 @@ button.share-button {
   margin-top: 5px;
 }
 
+.loader-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%)!important;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .loader:empty {
-  position: absolute;
-  top: calc(50% - 4em);
-  left: calc(50% - 4em);
-  width: 6em;
-  height: 6em;
-  border: 1.1em solid rgba(0, 0, 0, 0.2);
-  border-left: 1.1em solid #FC6621;
+  width: 2em;
+  height: 2em;
+  border: .4em solid rgba(0, 0, 0, 0.2);
+  border-left: .4em solid #FC6621;
   border-radius: 50%;
   animation: spinner 1.1s infinite linear;
   z-index:999999;
+  margin: auto;
+}
+
+@media(min-width: 801px) {
+  .loader:empty {
+    width: 4em;
+    height: 4em;
+  }  
 }
 
 @keyframes spinner {
