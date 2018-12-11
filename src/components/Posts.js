@@ -17,9 +17,10 @@ class Posts extends React.Component {
       this.onLoadMore = this.onLoadMore.bind(this)
     }
     
-    componentDidMount() {
-        this.fetchLatestNews();
+   async componentDidMount() {
+        await this.fetchLatestNews();
     }
+
     
     fetchLatestNews() {
       fetch('https://hacker-news.firebaseio.com/v0/newstories.json')
@@ -39,7 +40,7 @@ class Posts extends React.Component {
                 })
              })
           });
-      })
+      })    
     }
 
      onLoadMore(e) {
