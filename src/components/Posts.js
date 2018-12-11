@@ -24,21 +24,26 @@ class Posts extends React.Component {
     
 
      fetchLatestNews = async () => {
-	
-        const response = await  fetch('https://hacker-news.firebaseio.com/v0/newstories.json')
-        const storyIds = await response.json()
-        
-         storyIds.map( async newsId => {
-            const allStories = await fetch(` https://hacker-news.firebaseio.com/v0/item/${newsId}.json`)
-            const data = await allStories.json()
-            this.setState((currentState) => {                    
-                currentState.posts.push(data);
-                return { 
-                    posts: currentState.posts,
-                    loading: false
-                };
-            })  
-        })
+
+        const baseUrl = 'https://hacker-news.firebaseio.com/v0'
+       
+        try {
+            const response = await fetch(`${baseUrl}/newstories.json`)
+            const storyIds = await response.json()
+            storyIds.map( async newsId => {
+               const allStories = await fetch(` ${baseUrl}/item/${newsId}.json`)
+               const data = await allStories.json()
+               this.setState((currentState) => {                    
+                   currentState.posts.push(data);
+                   return { 
+                       posts: currentState.posts,
+                       loading: false
+                   };
+               })  
+           })             
+        } catch(e) {
+            console.log('You have an error', e);
+        }
     }       
 
      onLoadMore(e) {
