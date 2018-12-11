@@ -20,31 +20,26 @@ class Posts extends React.Component {
    async componentDidMount() {
         await this.fetchLatestNews();
     }
-
+      
     
-    fetchLatestNews() {
-      fetch('https://hacker-news.firebaseio.com/v0/newstories.json')
-        .then(response => response.json())
-            .catch(error => console.log('No news: ',error))
-        .then(data => {
-            data.map( newsId => {
-            return fetch(` https://hacker-news.firebaseio.com/v0/item/${newsId}.json`)
-                .then(response => response.json())
-                .catch(error => console.log('Failed to fetch news: ',error))
-                .then( itemDetail => {
-              
-                this.setState((currentState) => {                    
-                    currentState.posts.push(itemDetail);
-                    return { 
-                        posts: currentState.posts,
-                        loading: false
-                    };
-                })
-             })             
-          });
-      })    
-      .catch(error => console.log('Failed to fecth first response: ',error))
-    }
+
+     fetchLatestNews = async () => {
+	
+        const response = await  fetch('https://hacker-news.firebaseio.com/v0/newstories.json')
+        const storyIds = await response.json()
+        
+         storyIds.map( async newsId => {
+            const allStories = await fetch(` https://hacker-news.firebaseio.com/v0/item/${newsId}.json`)
+            const data = await allStories.json()
+            this.setState((currentState) => {                    
+                currentState.posts.push(data);
+                return { 
+                    posts: currentState.posts,
+                    loading: false
+                };
+            })  
+        })
+    }       
 
      onLoadMore(e) {
         e.preventDefault();
