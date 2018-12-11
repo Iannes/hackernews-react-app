@@ -25,10 +25,12 @@ class Posts extends React.Component {
     fetchLatestNews() {
       fetch('https://hacker-news.firebaseio.com/v0/newstories.json')
         .then(response => response.json())
+            .catch(error => console.log('No news: ',error))
         .then(data => {
             data.map( newsId => {
             return fetch(` https://hacker-news.firebaseio.com/v0/item/${newsId}.json`)
                 .then(response => response.json())
+                .catch(error => console.log('Failed to fetch news: ',error))
                 .then( itemDetail => {
               
                 this.setState((currentState) => {                    
@@ -38,13 +40,14 @@ class Posts extends React.Component {
                         loading: false
                     };
                 })
-             })
+             })             
           });
       })    
+      .catch(error => console.log('Failed to fecth first response: ',error))
     }
 
      onLoadMore(e) {
-         e.preventDefault();
+        e.preventDefault();
         this.setState({
             limit: this.state.limit + 10
         });
