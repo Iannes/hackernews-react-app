@@ -8,8 +8,8 @@ class App extends Component {
 
   render() {
     return (
-      <main className="App">          
-          <Header />
+      <main className="App">
+        <Header className="container container-header" title='Hacker News'/>
           <Posts />
       </main>
     );
