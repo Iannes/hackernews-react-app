@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Header  from "./components/Header";
 import Posts  from "./components/Posts";
-
+import InternetError from './components/InternetError'
 
 class App extends Component {
 
@@ -10,7 +10,8 @@ class App extends Component {
     return (
       <main className="App">
         <Header className="container container-header" title='Hacker News'/>
-          <Posts />
+        <InternetError />
+        <Posts />
       </main>
     );
   }

@@ -8,6 +8,7 @@ class Posts extends React.Component {
     super();
 
     this.state = {
+      offline: false,
       loading: true,
       limit: 10,
       posts: [],
@@ -16,11 +17,32 @@ class Posts extends React.Component {
 
     this.fetchLatestNews = this.fetchLatestNews.bind(this);
     this.onLoadMore = this.onLoadMore.bind(this);
+    this.isOnline = this.isOnline.bind(this)
   }
 
-  async componentDidMount() {
-    await this.fetchLatestNews();
+  async componentWillMount() {
+    await this.isOnline()
   }
+
+
+  async componentDidMount() {
+    if(this.state.offline === false) {
+      await this.fetchLatestNews();
+    }
+  }
+
+  isOnline = () => {
+    if (!navigator.onLine) {
+      this.setState({
+        offline: true,
+        loading: false
+      })     
+    } else {
+        console.log('Online')
+        return false;
+    }
+  }  
+
 
   fetchLatestNews = async () => {
     const baseUrl = this.state.baseUrl;
@@ -41,6 +63,9 @@ class Posts extends React.Component {
       });
     } catch (e) {
       console.error("You have an error", e);
+      this.setState({
+        loading: false
+      })
     }
   };
 
@@ -52,10 +77,12 @@ class Posts extends React.Component {
   }
 
   render() {
-    const { loading, posts, limit } = this.state;
+    const { loading, posts, limit, offline } = this.state;
 
     if (loading) {
       return <Loader />;
+    } else if(offline) {
+      return false;
     } else {
       return (
         <section>
