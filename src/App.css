@@ -48,6 +48,7 @@ header {
   left: 0;
   right: 0;
   z-index: 10;
+  width: 100%;
 }
 
 .container {
@@ -101,10 +102,15 @@ button.share-button {
   font-weight: 600;
   position: relative;
   padding: 43px;
-  box-shadow: 5px 5px 15px 1px rgba(0, 0, 0, 0.2);
   border-radius: 4px;
-  max-width: 350px;
   margin: 10px auto;
+  border-bottom: 1px solid #d2d2d2;
+}
+
+@media screen and(min-width: 800px) {
+  .posts li {
+    max-width: 350px;
+  }
 }
 
 .posts li a {
@@ -125,11 +131,10 @@ button.share-button {
   margin: 20px auto;
   padding: 12px 30px;
   border: 0;
-  box-shadow: 5px 5px 15px 1px rgba(0, 0, 0, 0.51);
   border-radius: 5px;
   background: #fc6621;
   text-decoration: none;
-  color: inherit;
+  color: #eee;
   font-size: 18px;
   line-height: 21px;
   cursor: pointer;
@@ -163,7 +168,10 @@ button.share-button {
   font-weight: 200;
   font-size: 0.8em;
   margin-top: 5px;
+  max-width: 250px;
+  margin: 10px auto;
 }
+
 
 .loader-container {
   position: absolute;
