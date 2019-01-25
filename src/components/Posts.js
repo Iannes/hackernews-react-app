@@ -18,6 +18,7 @@ class Posts extends React.Component {
     this.fetchLatestNews = this.fetchLatestNews.bind(this);
     this.onLoadMore = this.onLoadMore.bind(this);
     this.isOnline = this.isOnline.bind(this)
+    this.setLocalStorage = this.setLocalStorage.bind(this)
   }
 
   async componentWillMount() {
@@ -27,8 +28,18 @@ class Posts extends React.Component {
 
   async componentDidMount() {
     if(this.state.offline === false) {
-      await this.fetchLatestNews();
+      const cache = await this.fetchLatestNews()                    
+      return cache;
     }
+  }
+
+   componentDidUpdate(cache) {
+     this.setLocalStorage(cache)
+  }
+
+  setLocalStorage(news = {}) {
+    news = this.state.posts
+    localStorage.setItem('data', JSON.stringify(news));
   }
 
   isOnline = () => {
@@ -50,19 +61,22 @@ class Posts extends React.Component {
     try {
       const response = await fetch(`${baseUrl}/newstories.json`);
       const storyIds = await response.json();
+
       storyIds.map(async newsId => {
-        const allStories = await fetch(` ${baseUrl}/item/${newsId}.json`);
+        const allStories = await fetch(`${baseUrl}/item/${newsId}.json`);
         const data = await allStories.json();
-        this.setState(currentState => {
-          currentState.posts.push(data);
-          return {
-            posts: currentState.posts,
-            loading: false
-          };
-        });
+          this.setState(currentState => {
+              currentState.posts.push(data);
+              return {
+                posts: currentState.posts,
+                loading: false
+              };
+          });
       });
     } catch (e) {
+      
       console.error("You have an error", e);
+
       this.setState({
         loading: false
       })
@@ -87,7 +101,7 @@ class Posts extends React.Component {
       return (
         <section>
           <ul className="posts">
-            {posts.slice(0, limit).map(post => {
+            {posts && posts.slice(0, limit).map(post => {
               return post !== null && <Item key={post.id} post={post} />;
             })}
           </ul>
